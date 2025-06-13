@@ -1,32 +1,42 @@
-import styled from "styled-components";
-
-const StyledButton = styled.button`
-  outline: none;
-  border: 1px solid #222;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #333;
-    color: #fff;
-  }
-`;
+import { useState } from "react";
 
 const Categoris = ({categoris, onSelect}) => {
+  const [selected, setSelected] = useState(null);
+  const handleClick = (item) => {
+    setSelected(item);
+  };
+  const handleStart = () => {
+    if (selected) {
+      onSelect(selected);
+    } else {
+      alert("카테고리를 선택해주세요!");
+    }
+  };
   return (
     <div className="category">
-      <h1>퀴즈 카테고리를 선택해 주세요</h1>
-      <div className="category-wrap">
-        {
-          categoris.map((item, idx)=>{
-            return (
-            <StyledButton key={idx} 
-                          onClick={()=>{onSelect(item)}}>
-                          {item}
-            </StyledButton>)
-          })
-        }
+      <div className="title-wrap">
+        <h2>내 문화력은 어느 정도일까?</h2>
+        <h1>문화력 테스트</h1>
       </div>
+      <div className="category-wrap">
+      <h2>카테고리를 선택해 주세요</h2>
+        <div className="categoryBtn-wrap">
+          {
+            categoris.map((item, idx)=>{
+              return (
+            <button
+              key={idx}
+              className={selected === item ? "selected" : ""}
+              onClick={() => handleClick(item)}
+            >
+            {item}
+            </button>
+              )
+            })
+          }
+        </div>
+      </div>
+      <button className="btn-style" onClick={handleStart}>시작하기</button>
     </div>
   );
 };

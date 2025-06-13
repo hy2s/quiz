@@ -17,8 +17,10 @@ const Quizpage = ({quiz,onFinished}) => {
   }
   return (
     <div className="quiz-page">
-      <h2>퀴즈({currentIdx+1}/{quiz.length})</h2>
-      <p>{currentQuiz.question}</p>
+      <div className="quiz-title">
+        <h2>Q{currentIdx+1}.</h2>
+        <p>{currentQuiz.question}</p>
+      </div>
       <div className="choices">
         {
           currentQuiz.choices.map((item, idx)=>{
@@ -26,7 +28,7 @@ const Quizpage = ({quiz,onFinished}) => {
           })
         }
       </div>
-      <p>현재 점수: {score}</p>
+      <button className="btn-style">다음 문제 →</button>
     </div>
   );
 };

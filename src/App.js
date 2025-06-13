@@ -3,6 +3,7 @@ import Categoris from './Components/Categoris';
 import { useState } from 'react';
 import Quizpage from './Components/Quizpage';
 import Results from './Components/Results';
+import './index.scss';
 
 const App = () => {
   const [category, setCategory] = useState("");
@@ -27,6 +28,7 @@ const App = () => {
   }
   return (
     <div className="app">
+      
       { !category && !finished &&
         (<Categoris categoris={quizData.categories} 
                     onSelect={onSelectCategory}
